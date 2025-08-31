@@ -52,7 +52,6 @@ open class IdeaCommunityProperties(communityHomeDir: Path) : BaseIdeaCommunityPr
     }
 
     productLayout.bundledPluginModules.removeAll { shouldRemoveModule(it) }
-    productLayout.bundledPluginModules += modulesToAdd
     productLayout.pluginLayouts = productLayout.pluginLayouts.removeAll { shouldRemoveModule(it.mainModule) }
 
     for (bundledPlugin in productLayout.bundledPluginModules) {

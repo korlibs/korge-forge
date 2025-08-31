@@ -90,14 +90,22 @@ object CommunityRepositoryModules {
       spec.withModule("intellij.maven.server.telemetry", "maven-server-telemetry.jar")
       spec.withModule("intellij.maven.errorProne.compiler")
       spec.withModule("intellij.maven.server.indexer", "maven-server-indexer.jar")
-      spec.withModuleLibrary(libraryName = "apache.maven.core:3.8.3", moduleName = "intellij.maven.server.indexer",
-                             relativeOutputPath = "intellij.maven.server.indexer/lib")
-      spec.withModuleLibrary(libraryName = "apache.maven.wagon.provider.api:3.5.2", moduleName = "intellij.maven.server.indexer",
-                             relativeOutputPath = "intellij.maven.server.indexer/lib")
-      spec.withModuleLibrary(libraryName = "apache.maven.archetype.common-no-trans:3.2.1", moduleName = "intellij.maven.server.indexer",
-                             relativeOutputPath = "intellij.maven.server.indexer/lib")
-      spec.withModuleLibrary(libraryName = "apache.maven.archetype.catalog-no-trans:321", moduleName = "intellij.maven.server.indexer",
-                             relativeOutputPath = "intellij.maven.server.indexer/lib")
+      spec.withModuleLibrary(
+        libraryName = "apache.maven.core:3.8.3", moduleName = "intellij.maven.server.indexer",
+        relativeOutputPath = "intellij.maven.server.indexer/lib"
+      )
+      spec.withModuleLibrary(
+        libraryName = "apache.maven.wagon.provider.api:3.5.2", moduleName = "intellij.maven.server.indexer",
+        relativeOutputPath = "intellij.maven.server.indexer/lib"
+      )
+      spec.withModuleLibrary(
+        libraryName = "apache.maven.archetype.common-no-trans:3.2.1", moduleName = "intellij.maven.server.indexer",
+        relativeOutputPath = "intellij.maven.server.indexer/lib"
+      )
+      spec.withModuleLibrary(
+        libraryName = "apache.maven.archetype.catalog-no-trans:321", moduleName = "intellij.maven.server.indexer",
+        relativeOutputPath = "intellij.maven.server.indexer/lib"
+      )
 
       spec.withModule("intellij.maven.artifactResolver.m31", "artifact-resolver-m31.jar")
       spec.withModule("intellij.maven.artifactResolver.common", "artifact-resolver-m31.jar")
@@ -106,15 +114,17 @@ object CommunityRepositoryModules {
 
       spec.withModule("intellij.maven.server", relativeJarPath = "maven-server.jar")
 
-      spec.doNotCopyModuleLibrariesAutomatically(listOf(
-        "intellij.maven.artifactResolver.common",
-        "intellij.maven.artifactResolver.m31",
-        "intellij.maven.server.m3.common",
-        "intellij.maven.server.m3.impl",
-        "intellij.maven.server.m36.impl",
-        "intellij.maven.server.m40",
-        "intellij.maven.server.indexer",
-      ))
+      spec.doNotCopyModuleLibrariesAutomatically(
+        listOf(
+          "intellij.maven.artifactResolver.common",
+          "intellij.maven.artifactResolver.m31",
+          "intellij.maven.server.m3.common",
+          "intellij.maven.server.m3.impl",
+          "intellij.maven.server.m36.impl",
+          "intellij.maven.server.m40",
+          "intellij.maven.server.indexer",
+        )
+      )
 
       spec.withGeneratedResources { targetDir, context ->
         val targetLib = targetDir.resolve("lib")
@@ -132,11 +142,13 @@ object CommunityRepositoryModules {
         copyDir(mavenDist, targetLib.resolve("maven3"))
       }
     },
-    pluginAuto(listOf(
-      "intellij.gradle",
-      "intellij.gradle.common",
-      "intellij.gradle.toolingProxy",
-    )) { spec ->
+    pluginAuto(
+      listOf(
+        "intellij.gradle",
+        "intellij.gradle.common",
+        "intellij.gradle.toolingProxy",
+      )
+    ) { spec ->
       spec.withModule("intellij.gradle.toolingExtension", "gradle-tooling-extension-api.jar")
       spec.withModule("intellij.gradle.toolingExtension.impl", "gradle-tooling-extension-impl.jar")
       spec.withProjectLibrary("Gradle", LibraryPackMode.STANDALONE_SEPARATE)
@@ -209,17 +221,16 @@ object CommunityRepositoryModules {
     }
   )
 
-  
-
-  }
 
   fun githubPlugin(mainModuleName: String, productCode: String): PluginLayout {
     return plugin(mainModuleName) { spec ->
       spec.directoryName = "vcs-github-$productCode"
       spec.mainJarName = "vcs-github.jar"
-      spec.withModules(listOf(
-        "intellij.vcs.github"
-      ))
+      spec.withModules(
+        listOf(
+          "intellij.vcs.github"
+        )
+      )
       spec.withCustomVersion { _, version, _ ->
         PluginVersionEvaluatorResult(pluginVersion = "$version-$productCode")
       }
@@ -241,11 +252,13 @@ object CommunityRepositoryModules {
     return plugin("intellij.groovy") { spec ->
       spec.directoryName = "Groovy"
       spec.mainJarName = "Groovy.jar"
-      spec.withModules(listOf(
-        "intellij.groovy.psi",
-        "intellij.groovy.structuralSearch",
-        "intellij.groovy.git",
-      ))
+      spec.withModules(
+        listOf(
+          "intellij.groovy.psi",
+          "intellij.groovy.structuralSearch",
+          "intellij.groovy.git",
+        )
+      )
       spec.withModule("intellij.groovy.jps", "groovy-jps.jar")
       spec.withModule("intellij.groovy.rt", "groovy-rt.jar")
       spec.withModule("intellij.groovy.spock.rt", "groovy-spock-rt.jar")
@@ -261,5 +274,6 @@ object CommunityRepositoryModules {
     }
   }
 }
+
 
 
