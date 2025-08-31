@@ -52,7 +52,6 @@ open class IdeaCommunityProperties(communityHomeDir: Path) : BaseIdeaCommunityPr
     }
 
     productLayout.bundledPluginModules.removeAll { shouldRemoveModule(it) }
-    productLayout.bundledPluginModules += modulesToAdd
     productLayout.pluginLayouts = productLayout.pluginLayouts.removeAll { shouldRemoveModule(it.mainModule) }
 
     for (bundledPlugin in productLayout.bundledPluginModules) {
@@ -70,7 +69,7 @@ open class IdeaCommunityProperties(communityHomeDir: Path) : BaseIdeaCommunityPr
   override fun getAdditionalPluginPaths(context: BuildContext): List<Path> {
     return listOf(
       //context.paths.projectHome.resolve("../korge-forge-plugin/build/distributions/KorgePlugin.zip")
-      context.paths.projectHome.resolve("../korge-forge-plugin/build/distributions/KorgePlugin/KorgePlugin")
+      context.paths.projectHome.resolve("korge-forge-plugin/build/distributions/_KorgePlugin/KorgePlugin")
     )
   }
   override fun getSystemSelector(appInfo: ApplicationInfoProperties, buildNumber: String): String =

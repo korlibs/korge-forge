@@ -11,7 +11,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../korge-forge-plugin/build/distributions/KorgePlugin/KorgePlugin/lib" />
+          <root url="file://$MODULE_DIR$/../../korge-forge-plugin/build/distributions/_KorgePlugin/KorgePlugin/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
