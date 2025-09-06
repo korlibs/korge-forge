@@ -37,7 +37,8 @@ open class IdeaCommunityProperties(communityHomeDir: Path) : BaseIdeaCommunityPr
       "intellij.eclipse",
       "intellij.sh.python",
       "intellij.ant",
-      "intellij.gdpr"
+      "intellij.gdpr",
+      "intellij.modules.kotlin.k2"
       //////////////
       //"intellij.vcs.gitlab",
       //"intellij.groovy",
