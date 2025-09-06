@@ -1,3 +1,4 @@
 [submodule "korge-forge-plugin"]
 	path = korge-forge-plugin
 	url = https://github.com/korlibs/korge-forge-plugin.git
+	branch = staging
