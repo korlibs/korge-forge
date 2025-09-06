@@ -1,20 +1,18 @@
 name: IntelliJ IDEA
 on:
-  schedule:
-    # daily at 4AM for the master branch
-    - cron: '0 4 * * *'
-  push:
-    # for each release
-    tags:
-      - 'idea/20*'
+  workflow_dispatch:
+
 env:
   artifacts_dir: 'out/idea-ce/artifacts'
+
 jobs:
   # a single job for all OSes cannot be used due to free disk space lack on runners
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
       - uses: ./.github/actions/build_ide
         with:
           os: linux
@@ -23,11 +21,14 @@ jobs:
         with:
           os: linux
           extension: tar.gz
-          artifacts_dir: ${{env.artifacts_dir}}
+          artifacts_dir: ${{ env.artifacts_dir }}
+
   build-windows:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
       - uses: ./.github/actions/build_ide
         with:
           os: windows
@@ -36,11 +37,14 @@ jobs:
         with:
           os: windows
           extension: exe
-          artifacts_dir: ${{env.artifacts_dir}}
+          artifacts_dir: ${{ env.artifacts_dir }}
+
   build-macos:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
       - uses: ./.github/actions/build_ide
         with:
           os: mac
@@ -49,19 +53,22 @@ jobs:
         with:
           os: mac
           extension: sit
-          artifacts_dir: ${{env.artifacts_dir}}
+          artifacts_dir: ${{ env.artifacts_dir }}
       - name: Upload .dmg build scripts
         uses: actions/upload-artifact@v4.4.3
         with:
           name: dmg-build-scripts
           if-no-files-found: 'error'
           retention-days: 1
-          path: ${{env.artifacts_dir}}/macos-dmg-build/
+          path: ${{ env.artifacts_dir }}/macos-dmg-build/
+
   build-dmg:
     runs-on: macos-latest
     needs: build-macos
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
       - name: Download .dmg build scripts
         uses: actions/download-artifact@v4.1.8
         with:
@@ -72,7 +79,6 @@ jobs:
           name: mac-sit-unsigned
       - name: Build .dmg
         shell: bash
-        # language=bash
         run: /bin/bash ./build.sh
       - name: Upload .dmg
         uses: ./.github/actions/upload_ide
@@ -80,3 +86,4 @@ jobs:
           os: mac
           extension: dmg
           artifacts_dir: .
+
