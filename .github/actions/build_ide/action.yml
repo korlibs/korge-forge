@@ -21,7 +21,7 @@ runs:
       run: |
         cd korge-forge-plugin
         chmod +x gradlew
-        ./gradlew doForgeRelease
+        ./gradlew doForgeRelease --no-daemon
         cd ..
 
     - name: Build environment
