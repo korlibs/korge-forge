@@ -7,6 +7,7 @@
   <icon-eap svg="/korge.svg" svg-small="/korge_16.svg"/>
   <names product="KORGE" fullname="KorGE Forge" edition="Fenix Edition" script="korge" motto="KorGE Game Engine"/>
 
+
   <essential-plugin>com.intellij.java</essential-plugin>
   <essential-plugin>com.intellij.java.ide</essential-plugin>
   <essential-plugin>com.intellij.modules.json</essential-plugin>
